@@ -37,7 +37,11 @@ export default Ember.Component.extend({
     });
 
     Ember.run.later(this, function() {
-      force.resume()
+      force.resume();
+
+      Ember.run.later(this, function() {
+        force.resume();
+      }, 7000);
     }, 7000);
   },
 
@@ -83,7 +87,7 @@ export default Ember.Component.extend({
   createLabeledCircles: function (force, gNodes) {
     let popularityScale = d3.scale.pow(3)
       .domain([Math.min(...force.nodes().mapBy("popularity")), Math.max(...force.nodes().mapBy("popularity"))])
-      .range([1, 20]);
+      .range([1, 25]);
 
     gNodes.append("circle")
       .attr("class", "node")
