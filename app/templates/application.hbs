@@ -1,2 +1,5 @@
-<header>Spotify Mapper</header>
-{{d3-map}}
+<header>
+  Spotify Mapper
+  <span class="right">Artist Name: {{input value=artistName action="updateArtistID" on="enter"}}</span>
+</header>
+{{d3-map artistID=artistID}}

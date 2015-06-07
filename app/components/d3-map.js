@@ -10,8 +10,8 @@ export default Ember.Component.extend({
     var height = Ember.$(document).height() - Ember.$("header").height() - 25;
 
     let force = d3.layout.force()
-      .charge(-300)
-      .linkDistance(150)
+      .charge(-200)
+      .linkDistance(120)
       .linkStrength(0.2)
       .friction(0.95)
       .gravity(0)
@@ -45,9 +45,13 @@ export default Ember.Component.extend({
     }, 7000);
   },
 
-  didInsertElement: function () {
-    this.drawGraph("43ZHCT0cAZBISjO8DG9PnE");
+  didInsertElement: function() {
+    this.drawGraph(this.get('artistID'));
   },
+
+  centerNodeUpdater: function() {
+    this.drawGraph(this.get('artistID'));
+  }.observes('artistID'),
 
   addConnectionsForNode: function(node, force) {
     let connectionsPromise = this.findConnections(node).then((linkedNodes) => {
@@ -93,7 +97,7 @@ export default Ember.Component.extend({
       .attr("class", "node")
       .attr("r", (d) => popularityScale(d.popularity))
       .call(force.drag)
-      .on("dblclick", (d) => this.drawGraph(d.id));
+      .on("dblclick", (d) => this.set("artistID", d.id));
 
     gNodes.append("text")
       .attr("transform", (d) => "translate(" + popularityScale(d.popularity) + ", 5)")

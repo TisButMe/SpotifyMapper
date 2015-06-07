@@ -8,6 +8,11 @@ html {
       font-size: 20pt;
       padding: 10px;
       background-color: rgba(227, 254, 223, 0.54);
+
+      .right {
+        float: right;
+        font-size: 14pt;
+      }
     }
 
     .ember-view {
