@@ -9,57 +9,90 @@ export default Ember.Component.extend({
     let force = d3.layout.force()
       .charge(-240)
       .linkDistance(120)
-      .gravity(0)
       .size([width, height]);
 
     let svg = d3.select(".d3-map")
       .attr("width", width)
       .attr("height", height);
 
-    d3.json("miserables.json", function(error, graph) {
-      graph.nodes[0].fixed = true;
-      graph.nodes[0].x = width / 2;
-      graph.nodes[0].y = height/ 2;
+    let baseId = "43ZHCT0cAZBISjO8DG9PnE";
 
-      let popularityScale = d3.scale.linear()
-        .domain([1, Math.max(...graph.nodes.mapBy("popularity"))])
-        .range([6, 24]);
+    Ember.$.get("https://api.spotify.com/v1/artists/" + baseId).then((data) => {
+      let node = this.artistToNode(data);
+      node.fixed = true;
+      node.x = width / 2;
+      node.y = height / 2;
+      node.searched = true;
 
-      force
-        .nodes(graph.nodes)
-        .links(graph.links)
-        .start();
+      force.nodes().push(node);
 
-      let link = svg.selectAll(".link")
-        .data(graph.links)
-        .enter().append("line")
-        .attr("class", "link");
+      this.findConnections(node).then((newNodes) => {
+        let nodeIndex = force.nodes().indexOf(node);
+        newNodes.forEach((node) => force.nodes().push(node));
 
-      let gNodes = svg.selectAll("g")
-        .data(graph.nodes)
-        .enter().append('g');
+        for (let i = force.nodes().length - newNodes.length; i < force.nodes().length; i++) {
+          force.links().push({target: nodeIndex, source: i});
+        }
 
-      gNodes.append("circle")
-        .attr("class", "node")
-        .attr("r", (d) => popularityScale(d.popularity))
-        .call(force.drag)
-        .on("click", (d) => console.log(d));
 
-      gNodes.append("text")
-        .attr("transform", (d) => "translate(" + popularityScale(d.popularity) + ", 5)")
-        .text(function(d) { return d.name; });
 
-      force.on("tick", function() {
-        link.attr("x1", function(d) { return d.source.x; })
-          .attr("y1", function(d) { return d.source.y; })
-          .attr("x2", function(d) { return d.target.x; })
-          .attr("y2", function(d) { return d.target.y; });
+        let links = svg.selectAll(".link")
+          .data(force.links())
+          .enter().append("line")
+          .attr("class", "link");
 
-        gNodes.attr("transform", function(d) {
-          console.log(d);
-          return 'translate(' + [d.x, d.y] + ')';
+        let gNodes = svg.selectAll("g")
+          .data(force.nodes())
+          .enter().append('g');
+
+        this.createLabeledCircles(force, gNodes);
+
+        force.on("tick", function () {
+          links.attr("x1", function (d) {
+            return d.source.x;
+          }).attr("y1", function (d) {
+            return d.source.y;
+          }).attr("x2", function (d) {
+            return d.target.x;
+          }).attr("y2", function (d) {
+            return d.target.y;
+          });
+
+          gNodes.attr("transform", function (d) {
+            return 'translate(' + [d.x, d.y] + ')';
+          });
         });
+
+        force.start();
       });
     });
+  },
+
+  artistToNode: function (artist) {
+    return {id: artist.id, name: artist.name, popularity: artist.popularity};
+  },
+
+  findConnections: function (node) {
+    return Ember.$.get("https://api.spotify.com/v1/artists/" + node.id + "/related-artists").then((data) => {
+      return data.artists.map((artist) => this.artistToNode(artist));
+    });
+  },
+
+  createLabeledCircles: function (force, gNodes) {
+    let popularityScale = d3.scale.linear()
+      .domain([1, Math.max(...force.nodes().mapBy("popularity"))])
+      .range([6, 24]);
+
+    gNodes.append("circle")
+      .attr("class", "node")
+      .attr("r", (d) => popularityScale(d.popularity))
+      .call(force.drag)
+      .on("click", (d) => console.log(d));
+
+    gNodes.append("text")
+      .attr("transform", (d) => "translate(" + popularityScale(d.popularity) + ", 5)")
+      .text(function (d) {
+        return d.name;
+      });
   }
 });
