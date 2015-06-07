@@ -3,41 +3,50 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   didInsertElement: function () {
-    var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    var width = Ember.$(document).width() - 15;
+    var height = Ember.$(document).height() - Ember.$("header").height() - 25;
 
-    var color = d3.scale.category20();
-
-    var force = d3.layout.force()
-      .charge(-120)
-      .linkDistance(30)
+    let force = d3.layout.force()
+      .charge(-240)
+      .linkDistance(120)
+      .gravity(0)
       .size([width, height]);
 
-    var svg = d3.select(".d3-map").append("svg")
+    let svg = d3.select(".d3-map")
       .attr("width", width)
       .attr("height", height);
 
     d3.json("miserables.json", function(error, graph) {
+      graph.nodes[0].fixed = true;
+      graph.nodes[0].x = width / 2;
+      graph.nodes[0].y = height/ 2;
+
+      let popularityScale = d3.scale.linear()
+        .domain([1, Math.max(...graph.nodes.mapBy("popularity"))])
+        .range([6, 24]);
+
       force
         .nodes(graph.nodes)
         .links(graph.links)
         .start();
 
-      var link = svg.selectAll(".link")
+      let link = svg.selectAll(".link")
         .data(graph.links)
         .enter().append("line")
-        .attr("class", "link")
-        .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+        .attr("class", "link");
 
-      var node = svg.selectAll(".node")
+      let gNodes = svg.selectAll("g")
         .data(graph.nodes)
-        .enter().append("circle")
-        .attr("class", "node")
-        .attr("r", 5)
-        .style("fill", function(d) { return color(d.group); })
-        .call(force.drag);
+        .enter().append('g');
 
-      node.append("title")
+      gNodes.append("circle")
+        .attr("class", "node")
+        .attr("r", (d) => popularityScale(d.popularity))
+        .call(force.drag)
+        .on("click", (d) => console.log(d));
+
+      gNodes.append("text")
+        .attr("transform", (d) => "translate(" + popularityScale(d.popularity) + ", 5)")
         .text(function(d) { return d.name; });
 
       force.on("tick", function() {
@@ -46,8 +55,10 @@ export default Ember.Component.extend({
           .attr("x2", function(d) { return d.target.x; })
           .attr("y2", function(d) { return d.target.y; });
 
-        node.attr("cx", function(d) { return d.x; })
-          .attr("cy", function(d) { return d.y; });
+        gNodes.attr("transform", function(d) {
+          console.log(d);
+          return 'translate(' + [d.x, d.y] + ')';
+        });
       });
     });
   }

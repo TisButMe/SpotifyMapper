@@ -2,23 +2,26 @@ html {
   height: 100%;
 
   body {
-    height: 100%;
+    margin: 0;
+
+    header {
+      font-size: 20pt;
+      padding: 10px;
+      background-color: rgba(227, 254, 223, 0.54);
+    }
 
     .ember-view {
-      height: 100%;
-
       .d3-map {
-        width: 100%;
-        height: 100%;
-
         .node {
           stroke: #fff;
           stroke-width: 1.5px;
+          fill: #4CBE44;
         }
 
         .link {
           stroke: #999;
           stroke-opacity: .6;
+          stroke-width: 2px;
         }
       }
     }
