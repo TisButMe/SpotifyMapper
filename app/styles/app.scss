@@ -4,7 +4,6 @@ html {
   body {
     margin: 0;
     .ember-view {
-
       .side-bar {
         position: fixed;
         top: 20px;
@@ -51,6 +50,13 @@ html {
           stroke-opacity: .6;
           stroke-width: 1px;
         }
+      }
+
+      .credits {
+        float: right;
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
       }
     }
   }
