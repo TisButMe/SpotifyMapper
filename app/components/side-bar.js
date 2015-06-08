@@ -16,6 +16,10 @@ export default Ember.Component.extend({
 
     toggleContentVisible: function() {
       this.toggleProperty('contentVisible');
+    },
+
+    searchOnYoutube: function(selectedNode) {
+      window.open("https://www.youtube.com/results?search_query=" + selectedNode.name, '_blank');
     }
   }
 });

@@ -36,6 +36,29 @@ html {
         .side-content {
           padding: 10px;
         }
+
+        .side-divider {
+          margin: 5px 10px 5px 10px;
+          height: 1px;
+          background-color: rgba(0, 0, 0, 0.51);
+          border: none;
+        }
+
+        .node-info {
+          padding: 5px;
+
+          h3 {
+            margin: 0;
+          }
+
+          .genres {
+            font-style: italic;
+          }
+
+          img {
+            cursor: pointer;
+          }
+        }
       }
 
       .d3-map {

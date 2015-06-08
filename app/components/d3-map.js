@@ -22,7 +22,7 @@ export default Ember.Component.extend({
       .attr("height", height);
 
     Ember.$.get("https://api.spotify.com/v1/artists/" + artistId).then((data) => {
-      let node = this.artistToNode(data);
+      let node = data;
       node.fixed = true;
       node.x = width / 2;
       node.y = height / 2;
@@ -78,13 +78,9 @@ export default Ember.Component.extend({
     return connectionsPromise;
   },
 
-  artistToNode: function (artist) {
-    return {id: artist.id, name: artist.name, popularity: artist.popularity};
-  },
-
   findConnections: function (node) {
     return Ember.$.get("https://api.spotify.com/v1/artists/" + node.id + "/related-artists").then((data) => {
-      return data.artists.map((artist) => this.artistToNode(artist));
+      return data.artists;
     });
   },
 
@@ -97,7 +93,8 @@ export default Ember.Component.extend({
       .attr("class", "node")
       .attr("r", (d) => popularityScale(d.popularity))
       .call(force.drag)
-      .on("dblclick", (d) => this.set("artistID", d.id));
+      .on("dblclick", (d) => this.set("artistID", d.id))
+      .on("click", (d) => this.set("selectedNode", d));
 
     gNodes.append("text")
       .attr("transform", (d) => "translate(" + popularityScale(d.popularity) + ", 5)")
