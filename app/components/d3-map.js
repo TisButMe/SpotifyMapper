@@ -6,8 +6,8 @@ export default Ember.Component.extend({
     Ember.$(".d3-map").remove();
     Ember.$(".base-visuals").append('<svg class="d3-map"></svg>');
 
-    var width = Ember.$(document).width() - 15;
-    var height = Ember.$(document).height() - Ember.$("header").height() - 25;
+    var width = Ember.$(document).width() - 5;
+    var height = Ember.$(document).height() - 5;
 
     let force = d3.layout.force()
       .charge(-200)
