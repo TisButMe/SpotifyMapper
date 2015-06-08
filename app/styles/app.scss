@@ -10,17 +10,32 @@ html {
         top: 20px;
         left: 20px;
         float: left;
-        width: 180px;
-        padding: 10px;
+        width: 200px;
         border-radius: 3px;
         box-shadow: 5px 5px 10px #9d9d9d;
+        z-index: 9999;
 
-        background-color: rgba(186, 255, 195, 0.13);
+        background-color: rgba(200, 255, 210, 0.45);
 
         .side-header {
-          font-size: 15pt;
+          font-size: 12pt;
           font-weight: bold;
           font-family: Verdana, Geneva, sans-serif;
+          background-color: rgba(142, 199, 160, 0.45);
+
+          padding: 5px;
+
+          .expand-caret {
+            position: relative;
+            float: right;
+            top: 1px;
+            right: 2px;
+            cursor: pointer;
+          }
+        }
+
+        .side-content {
+          padding: 10px;
         }
       }
 

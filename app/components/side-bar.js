@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNames: ['side-bar'],
 
+  contentVisible: true,
+
   actions: {
     updateArtistID: function(name) {
       Ember.$.get("https://api.spotify.com/v1/search?q=" + name + "&type=artist").then((data) => {
@@ -10,6 +12,10 @@ export default Ember.Component.extend({
           this.set("artistID", data.artists.items[0].id)
         }
       });
+    },
+
+    toggleContentVisible: function() {
+      this.toggleProperty('contentVisible');
     }
   }
 });
