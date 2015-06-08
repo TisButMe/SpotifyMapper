@@ -3,19 +3,27 @@ html {
 
   body {
     margin: 0;
-
-    header {
-      font-size: 20pt;
-      padding: 10px;
-      background-color: rgba(227, 254, 223, 0.54);
-
-      .right {
-        float: right;
-        font-size: 14pt;
-      }
-    }
-
     .ember-view {
+
+      .side-bar {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        float: left;
+        width: 180px;
+        padding: 10px;
+        border-radius: 3px;
+        box-shadow: 5px 5px 10px #9d9d9d;
+
+        background-color: rgba(186, 255, 195, 0.13);
+
+        .side-header {
+          font-size: 15pt;
+          font-weight: bold;
+          font-family: Verdana, Geneva, sans-serif;
+        }
+      }
+
       .d3-map {
         .node {
           stroke: #fff;
