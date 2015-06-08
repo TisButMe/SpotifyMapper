@@ -8,14 +8,14 @@
       {{input value=artistName placeholder="The Clash" action="updateArtistID" on="enter"}}
     </div>
     {{#if selectedNode}}
-      <hr class="side-divider">
-      <div class="node-info">
-          <h3>{{selectedNode.name}}</h3>
-          <div class="genres">{{selectedNode.genres}}</div>
-          <div class="search">
-              <a href={{selectedNode.external_urls.spotify}} target="_blank"><img src="icons/spotify.png" height="45px"></a>
-              <img src="icons/youtube.png" height="35px" {{action "searchOnYoutube" selectedNode}}>
-          </div>
-      </div>
+        <hr class="side-divider">
+        <div class="node-info">
+            <h3>{{selectedNode.name}}</h3>
+            <div class="genres">{{selectedNode.genres}}</div>
+            <div class="search">
+              <a href={{selectedNode.external_urls.spotify}} target="_blank"><img src="icons/spotify.png" height="30px" class="spotify-logo"></a>
+              <img src="icons/youtube.png" height="50px" {{action "searchOnYoutube" selectedNode}}>
+            </div>
+        </div>
     {{/if}}
 {{/if}}
