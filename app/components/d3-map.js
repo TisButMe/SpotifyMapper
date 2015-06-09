@@ -98,7 +98,7 @@ export default Ember.Component.extend({
       .on("click", (d) => this.set("selectedNode", d));
 
     gNodes.append("text")
-      .attr("transform", (d) => "translate(" + popularityScale(d.popularity) + ", 5)")
+      .attr("transform", (d) => "translate(" + (popularityScale(d.popularity) + 3) + ", 5)")
       .text(function (d) {
         return d.name;
       });
