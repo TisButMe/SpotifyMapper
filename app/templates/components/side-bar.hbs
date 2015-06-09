@@ -1,21 +1,32 @@
 <div class="side-header">
-    BandMap
-    <img src="/icons/expand38.svg" alt="Expand" height="15px" class="expand-caret" {{action 'toggleContentVisible'}}>
+  <img id="logo" src="icons/bandmap.svg" height="30px">
+  <span class="title">BandMap</span>
+  <img src="/icons/expand38.svg" alt="Expand" height="25px" class="expand-caret" {{action 'toggleContentVisible'}}>
 </div>
 {{#if contentVisible}}
-    <div class="side-content">
-        <img src="/icons/magnifier13.svg" alt="Search" height="15px">
-      {{input value=artistName placeholder="The Clash" action="updateArtistID" on="enter"}}
+  <div class="side-content">
+    <div class="search-bar">
+      <img class="search-button" src="/icons/magnifier13.svg" alt="Search" height="23px">
+      {{input class="search" value=artistName placeholder="Elvis Presley" action="updateArtistID" on="enter"}}
     </div>
-    {{#if selectedNode}}
-        <hr class="side-divider">
-        <div class="node-info">
-            <h3>{{selectedNode.name}}</h3>
-            <div class="genres">{{selectedNode.genres}}</div>
-            <div class="search">
-              <a href={{selectedNode.external_urls.spotify}} target="_blank"><img src="icons/spotify.png" height="30px" class="spotify-logo"></a>
-              <img src="icons/youtube.png" height="50px" {{action "searchOnYoutube" selectedNode}}>
-            </div>
-        </div>
-    {{/if}}
+  </div>
+  {{#if selectedNode}}
+    <hr class="side-divider">
+    <div class="node-info clearfix">
+      <h3>{{selectedNode.name}}</h3>
+      {{#if selectedNode}}
+        <img id="img-thumbnail" src="{{url}}" alt="{{selectedNode.name}}" width="200px">
+      {{/if}}
+      <div class="genres">{{selectedNode.genres}}</div>
+      <br/>
+      <br/>
+      Listen on:
+      <div class="search">
+        <img id="search-yt" class="pull-right" src="icons/yt-icon.png"
+             height="30px" {{action "searchOnYoutube" selectedNode}}>
+        <a href={{selectedNode.external_urls.spotify}} target="_blank"><img src="icons/spotify-icon.png" height="30px"
+                                                                            class="spotify-logo"></a>
+      </div>
+    </div>
+  {{/if}}
 {{/if}}

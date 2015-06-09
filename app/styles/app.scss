@@ -1,6 +1,11 @@
 html {
-  height: 100%;
+  font-family: 'Roboto', sans-serif;
 
+  height: 100%;
+  background-color: #F8F8FF;
+  .pull-right{
+    float: right
+  }
   body {
     margin: 0;
     .ember-view {
@@ -9,25 +14,29 @@ html {
         top: 20px;
         left: 20px;
         float: left;
-        width: 200px;
+        width: 240px;
         border-radius: 3px;
-        box-shadow: 5px 5px 10px #9d9d9d;
+        box-shadow: 2px 2px 5px #9d9d9d;
         z-index: 9999;
 
-        background-color: rgba(200, 255, 210, 0.45);
+        background-color: rgba(255, 255, 255, 0.45);
 
         input {
           width: 80%;
         }
 
         .side-header {
-          font-size: 12pt;
-          font-weight: bold;
-          font-family: Verdana, Geneva, sans-serif;
-          background-color: rgba(142, 199, 160, 0.45);
-
+          .title{
+            text-shadow: 1px 1px #257c05;
+            padding-left: 5px;
+            vertical-align: top;
+            line-height: 30px;
+            font-size: 18pt;
+            font-weight: bold;
+            color: #62bb46;
+          }
+          background-color: rgba(240, 240, 240, 0.45);
           padding: 5px;
-
           .expand-caret {
             position: relative;
             float: right;
@@ -38,28 +47,79 @@ html {
         }
 
         .side-content {
-          padding: 10px;
+          background-color: rgba(255, 255, 255, 0.45);
+          margin: 5px 4px 5px;
+          padding-left: 5px;
+          .search-bar{
+            input{
+              width: 180px;
+              line-height: 48px;
+              font-size: 22px;
+              border-radius: 0 4px 4px 0;
+              border: 0px solid #dddee1;
+              background-color: rgba(255, 255, 255, 0.45);
+              padding-left: 10px;
+              color: #62bb46;
+            }
+            input:focus{
+              outline: 0;
+            }
+            input::-webkit-input-placeholder {
+              color: #62bb46;
+            }
+            input:-moz-placeholder{
+              color: #62bb46;
+            }
+            input::-moz-placeholder{
+              color: #62bb46;
+            }
+            input:-ms-input-placeholder{
+              color: #62bb46;
+            }
+            input:focus::-webkit-input-placeholder {
+              color: rgba(255, 255, 255, 0.45);
+            }
+            input:focus:-moz-placeholder{
+              color: rgba(255, 255, 255, 0.45);
+            }
+            input:focus::-moz-placeholder{
+              color: rgba(255, 255, 255, 0.45);
+            }
+            input:focus:-ms-input-placeholder{
+              color: rgba(255, 255, 255, 0.45);
+            }
+          }
         }
 
         .side-divider {
-          margin: 5px 10px 5px 10px;
-          height: 1px;
-          background-color: rgba(0, 0, 0, 0.51);
-          border: none;
+          margin: 5px;
+          border: 0;
+          height: 2px;
+          background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #AAA, rgba(0, 0, 0, 0));
         }
 
         .node-info {
           padding: 5px 5px 0 5px;
 
           h3 {
-            margin: 0;
+            margin: 0 0 5px 5px;
           }
 
           .genres {
+            padding-left: 5px;
             font-style: italic;
           }
 
-          img {
+          #img-thumbnail{
+            margin: 5px 15px 5px 15px;
+            border-radius: 15px;
+          }
+
+          .search{
+            margin-top: 7px
+          }
+
+          #search-yt {
             cursor: pointer;
           }
 
@@ -71,13 +131,13 @@ html {
 
       .d3-map {
         .node {
-          stroke: #fff;
+          stroke: #257c05;
           stroke-width: 1.5px;
-          fill: #4CBE44;
+          fill: #62bb46;
         }
 
         .link {
-          stroke: #999;
+          stroke: #95C686;
           stroke-opacity: .6;
           stroke-width: 1px;
         }

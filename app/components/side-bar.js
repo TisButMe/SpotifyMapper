@@ -5,6 +5,10 @@ export default Ember.Component.extend({
 
   contentVisible: true,
 
+  url: function () {
+    return this.get("selectedNode").images[0].url;
+  }.property("selectedNode"),
+
   actions: {
     updateArtistID: function(name) {
       Ember.$.get("https://api.spotify.com/v1/search?q=" + name + "&type=artist").then((data) => {
