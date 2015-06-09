@@ -5,10 +5,10 @@
 </div>
 {{#if contentVisible}}
   <div class="side-content">
-    <form class="search-bar">
+    <div class="search-bar">
       <img class="search-button" src="/icons/magnifier13.svg" alt="Search" height="23px">
       {{input class="search" value=artistName placeholder="Elvis Presley" action="updateArtistID" on="enter"}}
-    </form>
+    </div>
   </div>
   {{#if selectedNode}}
     <hr class="side-divider">
