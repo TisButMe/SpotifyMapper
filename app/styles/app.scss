@@ -143,6 +143,19 @@ html {
         }
       }
 
+      .infos {
+        float: left;
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        color: #888;
+
+        p {
+          margin: 0;
+          text-align: right;
+        }
+      }
+
       .credits {
         float: right;
         position: fixed;
