@@ -22,6 +22,7 @@ export default Ember.Component.extend({
       .attr("height", height);
 
     Ember.$.get("https://api.spotify.com/v1/artists/" + artistId).then((data) => {
+      this.set("selectedNode", data);
       let node = data;
       node.fixed = true;
       node.x = width / 2;
