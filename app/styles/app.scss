@@ -64,17 +64,19 @@ html {
             input:focus{
               outline: 0;
             }
+
+            $placeholder-color: rgba(98, 187, 70, 0.48);
             input::-webkit-input-placeholder {
-              color: #62bb46;
+              color: $placeholder-color;
             }
             input:-moz-placeholder{
-              color: #62bb46;
+              color: $placeholder-color;
             }
             input::-moz-placeholder{
-              color: #62bb46;
+              color: $placeholder-color;
             }
             input:-ms-input-placeholder{
-              color: #62bb46;
+              color: $placeholder-color;
             }
             input:focus::-webkit-input-placeholder {
               color: rgba(255, 255, 255, 0.45);
@@ -130,10 +132,15 @@ html {
       }
 
       .d3-map {
+        text {
+          font-family: 'Roboto Mono', ;
+          text-shadow: 1px 1px 1px #FFF, -1px -1px 1px #FFF, -1px 1px 1px #FFF, 1px -1px 1px #FFF;
+        }
+
         .node {
-          stroke: #257c05;
+          stroke: #2f9c05;
           stroke-width: 1.5px;
-          fill: #62bb46;
+          fill: rgba(108, 200, 73, 0.49);
         }
 
         .link {
