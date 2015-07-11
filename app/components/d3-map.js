@@ -50,9 +50,15 @@ export default Ember.Component.extend({
     this.drawGraph(this.get('artistID'));
   },
 
-  centerNodeUpdater: function() {
-    this.drawGraph(this.get('artistID'));
-  }.observes('artistID'),
+  centerNodeUpdater: Ember.observer('artistID', function() {
+    // This little thing here is needed because something is firing
+    // this observer even without changes to the artistID, for some reason.
+    // TODO: Trace down what/why this is firing
+    if(this.get("currentArtistID") !== this.get('artistID')) {
+      this.drawGraph(this.get('artistID'));
+      this.set("currentArtistID", this.get("artistID"));
+    }
+  }),
 
   addConnectionsForNode: function(node, force) {
     let connectionsPromise = this.findConnections(node).then((linkedNodes) => {
