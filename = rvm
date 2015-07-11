@@ -1,0 +1,26 @@
+[1mdiff --git a/bower.json b/bower.json[m
+[1mindex 53a757e..9badd77 100644[m
+[1m--- a/bower.json[m
+[1m+++ b/bower.json[m
+[36m@@ -11,6 +11,7 @@[m
+     "jquery": "^1.11.1",[m
+     "loader.js": "ember-cli/loader.js#3.2.0",[m
+     "qunit": "~1.17.1",[m
+[31m-    "d3": "~3.5.5"[m
+[32m+[m[32m    "d3": "~3.5.5",[m
+[32m+[m[32m    "semantic-ui": "~2.0.3"[m
+   }[m
+ }[m
+[1mdiff --git a/package.json b/package.json[m
+[1mindex 38a3b88..369c1a0 100644[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@ -31,6 +31,7 @@[m
+     "ember-cli-qunit": "0.3.10",[m
+     "ember-cli-sass": "4.0.0",[m
+     "ember-cli-uglify": "1.0.1",[m
+[31m-    "ember-export-application-global": "^1.0.2"[m
+[32m+[m[32m    "ember-export-application-global": "^1.0.2",[m
+[32m+[m[32m    "semantic-ui-ember": "0.0.1"[m
+   }[m
+ }[m

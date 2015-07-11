@@ -1,3 +1,4 @@
+<!--
 <div class="side-header">
   <img id="logo" src="icons/bandmap.svg" height="30px">
   <span class="title">BandMap</span>
@@ -30,3 +31,32 @@
     </div>
   {{/if}}
 {{/if}}
+-->
+<div class="ui fluid vertical menu">
+  <div class="header item center">
+      <img id="logo" src="icons/bandmap.svg" height="30px">
+      <span class="title ui">BandMap</span>
+  </div>
+  <div class="item">
+      <div class="ui icon input">
+          {{input class="search" value=artistName placeholder="Elvis Presley" enter="updateArtistID"}}
+          <i class="search icon"></i>
+      </div>
+  </div>
+  {{#if selectedNode}}
+    <div class="ui item">
+      <h3>{{selectedNode.name}}</h3>
+      <div class="ui image">
+          <img class="ui image rounded bordered" src="{{url}}" alt="{{selectedNode.name}}">
+          {{#each selectedNode.genres as |genre idx|}}
+              <div class="ui ribbon label" style='bottom: {{idx-to-pos idx}}px; z-index: {{idx-to-zidx idx}}'>
+                  <i class="tag icon"></i> {{capitalized-name genre}}
+              </div>
+          {{/each}}
+      </div>
+      <div class="ui container">
+
+      </div>
+    </div>
+  {{/if}}
+</div>
