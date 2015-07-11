@@ -135,12 +135,14 @@ html {
         text {
           font-family: 'Roboto Mono', ;
           text-shadow: 1px 1px 1px #FFF, -1px -1px 1px #FFF, -1px 1px 1px #FFF, 1px -1px 1px #FFF;
+          cursor: pointer;
         }
 
         .node {
           stroke: #2f9c05;
           stroke-width: 1.5px;
           fill: rgba(108, 200, 73, 0.49);
+          cursor: pointer;
         }
 
         .link {
