@@ -108,7 +108,8 @@ export default Ember.Component.extend({
       .text(function (d) {
         return d.name;
       })
-      .on("click", (d) => this.set("selectedNode", d));
+      .on("click", (d) => this.set("selectedNode", d))
+      .on("dblclick", (d) => this.set("artistID", d.id));
   },
 
   findIndexOfNode(nodes, node) {
