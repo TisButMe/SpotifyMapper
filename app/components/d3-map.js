@@ -6,9 +6,10 @@ export default Ember.Component.extend({
     Ember.$(".d3-map").remove();
     Ember.$(".base-visuals").append('<svg class="d3-map"></svg>');
     Ember.$(".d3-map").hide();
+    Ember.$(".loading").show();
 
-    var width = Ember.$(document).width() - 5;
-    var height = Ember.$(document).height() - 5;
+    var width = Ember.$("body").width() - 5;
+    var height = Ember.$("html").height() - 5;
 
     let force = d3.layout.force()
       .charge(-200)
@@ -41,6 +42,7 @@ export default Ember.Component.extend({
     Ember.run.later(this, function() {
       force.resume();
       Ember.$(".d3-map").show();
+      Ember.$(".loading").hide();
 
       Ember.run.later(this, function() {
         force.resume();

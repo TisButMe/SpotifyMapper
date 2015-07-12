@@ -13,7 +13,7 @@
     <div class="ui item">
       <h3>{{selectedNode.name}}</h3>
       <div class="ui image">
-          <img class="ui image rounded bordered" src="{{url}}" alt="{{selectedNode.name}}">
+          <img class="ui image rounded" src="{{url}}" alt="{{selectedNode.name}}">
           {{#each selectedNode.genres as |genre idx|}}
               <div class="ui ribbon label" style='bottom: {{idx-to-pos idx}}px; z-index: {{idx-to-zidx idx}}'>
                   <i class="tag icon"></i> {{capitalized-name genre}}
