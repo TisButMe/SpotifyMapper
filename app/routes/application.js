@@ -35,6 +35,8 @@ export default Ember.Route.extend({
     },
 
     closeModal: function() {
+      $(".ui.modal").modal('hide');
+
       return this.disconnectOutlet({
         outlet: 'modal',
         parentView: 'application'
