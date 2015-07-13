@@ -1,0 +1,12 @@
+<div class="ui modal">
+    <a class="ui green right corner label" {{action "closeModal"}}>
+        <i class="close black icon"></i>
+    </a>
+    <div class="ui modal-header header">Settings</div>
+    <div class="ui content">
+        <div class="ui checkbox">
+            {{input type="checkbox" checked=model.showMagic}}
+            <label>Show the magic</label>
+        </div>
+    </div>
+</div>

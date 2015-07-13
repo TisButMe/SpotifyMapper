@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import SettingsHelper from '../helpers/settingsHelper'
 
 export default Ember.Route.extend({
   model: function (params) {
@@ -14,6 +15,17 @@ export default Ember.Route.extend({
   },
 
   setupController: function (controller, model) {
+    let storedSettings = localStorage.getItem("settings");
+
+    if(Ember.isPresent(storedSettings)) {
+      let loadedSettings = SettingsHelper.fromJson(storedSettings);
+      controller.set("settings", loadedSettings);
+    } else {
+      let defaultSettings = SettingsHelper.createDefault();
+      controller.set("settings", defaultSettings);
+      SettingsHelper.save(defaultSettings);
+    }
+
     controller.set("artistID", model);
   },
 

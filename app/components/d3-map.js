@@ -5,8 +5,11 @@ export default Ember.Component.extend({
   drawGraph: function(artistId) {
     Ember.$(".d3-map").remove();
     Ember.$(".base-visuals").append('<svg class="d3-map"></svg>');
-    Ember.$(".d3-map").hide();
-    Ember.$(".loading").show();
+
+    if(!this.get("showMagic")) {
+      Ember.$(".d3-map").hide();
+      Ember.$(".loading").show();
+    }
 
     var width = Ember.$("body").width() - 5;
     var height = Ember.$("html").height() - 5;
@@ -41,8 +44,10 @@ export default Ember.Component.extend({
 
     Ember.run.later(this, function() {
       force.resume();
-      Ember.$(".d3-map").show();
-      Ember.$(".loading").hide();
+      if(!this.get("showMagic")) {
+        Ember.$(".d3-map").show();
+        Ember.$(".loading").hide();
+      }
 
       Ember.run.later(this, function() {
         force.resume();
