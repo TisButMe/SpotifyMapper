@@ -20,8 +20,13 @@
               </div>
           {{/each}}
       </div>
-      <div class="ui container">
-
+      <div class="ui horizontal divider">Listen On</div>
+      <div class="ui">
+        <img id="search-yt" class="pull-right" src="icons/yt-icon.png"
+             height="30px" {{action "searchOnYoutube" selectedNode}}>
+        <a href={{selectedNode.external_urls.spotify}} target="_blank">
+            <img src="icons/spotify-icon.png" height="30px" class="spotify-logo">
+        </a>
       </div>
     </div>
   {{/if}}
