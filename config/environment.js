@@ -16,10 +16,10 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'default-src': "'none'",
       'script-src': "'self'",
-      'font-src': "'self' http://fonts.gstatic.com",
+      'font-src': "'self' http://fonts.gstatic.com https://fonts.gstatic.com data:",
       'connect-src': "'self' https://api.spotify.com",
       'img-src': "'self' https://i.scdn.co",
-      'style-src': "'self' http://fonts.googleapis.com",
+      'style-src': "'self' http://fonts.googleapis.com https://fonts.googleapis.com 'unsafe-inline'",
       'media-src': "'self'"
     },
 

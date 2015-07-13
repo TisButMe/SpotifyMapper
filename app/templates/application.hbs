@@ -1,11 +1,12 @@
 {{side-bar artistID=artistID selectedNode=selectedNode}}
 {{d3-map artistID=artistID selectedNode=selectedNode}}
+{{outlet 'modal'}}
 
 <div class="top-right">
     <button class="ui grey circular icon button">
         <i class="configure icon"></i>
     </button>
-    <button class="ui blue circular icon button">
+    <button class="ui blue circular icon button" {{action 'openModal' 'help-modal'}}>
         <i class="help icon"></i>
     </button>
 </div>
